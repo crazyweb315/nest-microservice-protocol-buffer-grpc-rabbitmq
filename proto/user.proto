@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package grpc;
+
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+}
+
+message CreateUserRequest {
+  string name = 1; // Name of the user
+  string username = 2; // Username for the user
+  string password = 3; // Password for the user
+  string email = 4; // Email address of the user
+  string bio = 5; // Optional bio for the user
+}
+
+message CreateUserResponse {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string bio = 4;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string bio = 4;
+}
