@@ -24,7 +24,11 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Simple example managing projects for users using NestJS/Protocol Buffer/gRPC/MongoDB/Prisma.
+- Added swagger.
+- Added prisma log
+- Added microservice leveraging RabbitMQ
+- Added JWT token
 
 ## Project setup
 
@@ -76,10 +80,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
+- Author - [Yong Yi Wong]
+- Contact - [yongyiwang.fullstack@gmail.com]
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
