@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { CreateUserRequest, UserResponse } from './interfaces/user.interface';
-import { UserNotExitException } from '../shared/exceptions';
+import { PrismaService } from '@providers/prisma/prisma.service';
+import {
+  CreateUserRequest,
+  UserResponse,
+} from '../lib/interfaces/user.interface';
+import { UserNotExitException } from '../lib/exceptions';
 import { User } from '@prisma/client';
 
 @Injectable()
