@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  username String    @unique
+  email    String    @unique
+  password String
+  bio      String?
+  projects  Project[] @relation("UserProjects") // Define the one-to-many relationship
+}
+
+model Project {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  userId   String   // Change this to String
+  user     User     @relation("UserProjects", fields: [userId], references: [id]) // Foreign key
+  @@index([userId]) // Create an index on the userId field
+}
