@@ -23,6 +23,12 @@ export class Exception extends HttpException {
   }
 }
 
+export class UniqueException extends HttpException {
+  constructor() {
+    super('Username or password must be unique', HttpStatus.BAD_REQUEST);
+  }
+}
+
 export class UnAuthorizedException extends HttpException {
   constructor(error = 'UnAuthorized User', errorCode = HttpStatus.BAD_REQUEST) {
     super(error, errorCode);

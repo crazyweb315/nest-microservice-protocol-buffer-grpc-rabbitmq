@@ -1,13 +1,28 @@
 syntax = "proto3";
-
 package grpc;
 
 service UserService {
-  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
-  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  rpc CreateUser (CreateUserInput) returns (UserResponse);
+  rpc GetUser (GetUserRequest) returns (UserResponse);
+  rpc DeleteUser (DeleteUserRequest) returns (UserResponse);
+  rpc FindUsers(Empty) returns (UserList);
+  rpc Login(LoginRequest) returns (LoginResponse);
 }
 
-message CreateUserRequest {
+message Empty {}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+  UserResponse user = 3;
+}
+
+message CreateUserInput {
   string name = 1; // Name of the user
   string username = 2; // Username for the user
   string password = 3; // Password for the user
@@ -15,20 +30,22 @@ message CreateUserRequest {
   string bio = 5; // Optional bio for the user
 }
 
-message CreateUserResponse {
+message UserResponse {
   string id = 1;
   string username = 2;
   string email = 3;
   string bio = 4;
+  string name = 5;
+}
+
+message UserList {
+  repeated UserResponse users = 1;
 }
 
 message GetUserRequest {
   string id = 1;
 }
 
-message GetUserResponse {
+message DeleteUserRequest {
   string id = 1;
-  string username = 2;
-  string email = 3;
-  string bio = 4;
 }
