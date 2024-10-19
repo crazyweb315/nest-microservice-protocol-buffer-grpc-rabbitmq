@@ -10,6 +10,8 @@ import {
   QueryInfo,
 } from '@providers/prisma/middlewares/logging.middleware';
 import { createUserMiddleware } from '@providers/prisma/middlewares/create-user.middleware';
+import { LoggerModule } from '@lib/logger/logger.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -27,8 +29,13 @@ import { createUserMiddleware } from '@providers/prisma/middlewares/create-user.
         ],
       },
     }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['.env', '.env.dev', '.env.stage', '.env.prod'],
+    }),
     UsersModule,
     ProjectsModule,
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

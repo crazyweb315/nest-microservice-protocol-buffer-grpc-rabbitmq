@@ -23,13 +23,15 @@
       "@pipes/*": ["./src/pipes/*"],
       "@interceptors/*": ["./src/interceptors/*"],
       "@interfaces/*": ["./src/lib/interfaces/*"],
-      "@decorators/*": ["./src/decorators/*"],
+      "@decorators/*": ["./src/lib/decorators/*"],
       "@tests/*": ["./src/tests/*"],
       "@modules/*": ["./src/modules/*"],
       "@providers/*": ["src/lib/providers/*"],
       "@config/*": ["./src/config/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@constants/*": ["./src/lib/constants/*"]
+      "@constants/*": ["./src/lib/constants/*"],
+      "@lib/*":["./src/lib/*"],
+      "@proto/*":["./proto/build/*"],
     }    
   }
 }
