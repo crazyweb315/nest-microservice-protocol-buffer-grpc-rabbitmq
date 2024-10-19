@@ -55,7 +55,5 @@ pids
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-/proto/node_modules
-/micro_account/node_modules
-/micro_account/proto
-/micro_account/prisma
+/proto
+/prisma
