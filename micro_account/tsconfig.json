@@ -29,7 +29,8 @@
       "@config/*": ["./lib/config/*"],
       "@helpers/*": ["./lib/helpers/*"],
       "@constants/*": ["./lib/constants/*"],
-      "@lib/*":["./lib/*"],
+      "@lib/*": ["./lib/*"],
+      "@proto/*": ["./proto/build/*"] 
     }    
   }
 }
