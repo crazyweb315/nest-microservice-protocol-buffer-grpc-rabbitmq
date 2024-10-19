@@ -2,8 +2,6 @@ import { Logger, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-//import { PrismaModule } from './prisma/prisma.module';
-import { ProjectsModule } from './projects/projects.module';
 import { PrismaModule } from '@providers/prisma/prisma.module';
 import {
   loggingMiddleware,
@@ -34,7 +32,6 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: ['.env', '.env.dev', '.env.stage', '.env.prod'],
     }),
     UsersModule,
-    ProjectsModule,
     LoggerModule,
   ],
   controllers: [AppController],
