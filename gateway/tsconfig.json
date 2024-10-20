@@ -18,18 +18,6 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@filters/*": ["../lib/filters/*"],
-      "@guards/*": ["../lib/guards/*"],
-      "@pipes/*": ["../lib/pipes/*"],
-      "@interceptors/*": ["../lib/interceptors/*"],
-      "@interfaces/*": ["../lib/interfaces/*"],
-      "@decorators/*": ["../lib/decorators/*"],
-      "@modules/*": ["../lib/modules/*"],
-      "@providers/*": ["../lib/providers/*"],
-      "@config/*": ["../lib/config/*"],
-      "@helpers/*": ["../lib/helpers/*"],
-      "@constants/*": ["../lib/constants/*"],
-      "@lib/*": ["../lib/*"],
       "@proto/*": ["./proto/build/*"] 
     }    
   }
