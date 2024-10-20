@@ -1,21 +1,20 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
 
-export class LoginInputException extends HttpException {
+export class LoginInputException extends RpcException {
   constructor() {
-    super('username or email must be provided', HttpStatus.BAD_REQUEST);
+    super('username or email must be provided');
   }
 }
 
-export class UserNotExitException extends HttpException {
+export class UserNotExitException extends RpcException {
   constructor() {
-    super('User not exists', HttpStatus.FORBIDDEN);
+    super('User not exists');
   }
 }
 
-export class WrongPassword extends HttpException {
+export class WrongPassword extends RpcException {
   constructor() {
-    super('Wrong password', HttpStatus.FORBIDDEN);
+    super('Wrong password');
   }
 }
 
@@ -25,14 +24,14 @@ export class Exception extends RpcException {
   }
 }
 
-export class UniqueException extends HttpException {
+export class UniqueException extends RpcException {
   constructor() {
-    super('Username or password must be unique', HttpStatus.BAD_REQUEST);
+    super('Username or password must be unique');
   }
 }
 
-export class UnAuthorizedException extends HttpException {
-  constructor(error = 'UnAuthorized User', errorCode = HttpStatus.BAD_REQUEST) {
-    super(error, errorCode);
+export class UnAuthorizedException extends RpcException {
+  constructor(error = 'UnAuthorized User') {
+    super(error);
   }
 }
