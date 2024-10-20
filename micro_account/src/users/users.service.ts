@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { PrismaService } from '@providers/prisma/prisma.service';
-import { LoginResponse } from '@proto/user';
+import { LoginResponse } from '@proto/user.pb';
 import {
   UserNotExitException,
   WrongPassword,
@@ -19,7 +19,8 @@ import { LoginInput } from '@interfaces/users/dto/login.input';
 import { BcryptService } from '@lib/hashing/bcrypt.service';
 import { TokenInput } from '@interfaces/users/dto/token.input';
 import { CreateUsersInput } from '@interfaces/users/dto/create-users.input';
-import { UserList, UserResponse } from 'proto/build/user';
+import { UserList, UserResponse } from 'proto/build/user.pb';
+import { RpcException } from '@nestjs/microservices/exceptions';
 
 @Injectable()
 export class UsersService {
