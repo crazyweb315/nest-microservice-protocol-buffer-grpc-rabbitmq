@@ -19,9 +19,9 @@ export class WrongPassword extends HttpException {
   }
 }
 
-export class Exception extends HttpException {
-  constructor(error, errorCode = HttpStatus.BAD_REQUEST) {
-    super(error, errorCode);
+export class Exception extends RpcException {
+  constructor(error) {
+    super(error);
   }
 }
 

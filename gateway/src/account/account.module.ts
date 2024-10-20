@@ -6,10 +6,10 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
   imports: [
     ClientsModule.register([
       {
-        name: process.env.ACCOUNT_MICRO_NAME || `ACCOUNT_MICROSERVICE`,
+        name: process.env.ACCOUNT_MICRO_NAME || `UserService`,
         transport: Transport.GRPC,
         options: {
-          url: 'node_1:50051',
+          url: 'localhost:5000',
           package: process.env.ACCOUNT_MICRO_PACKAGE || 'account',
           protoPath: './proto/user.proto',
         },
