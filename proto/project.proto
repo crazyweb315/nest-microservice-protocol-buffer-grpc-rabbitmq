@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package project;
+import "common.proto";
+
+service ProjectService {
+  rpc CreateProject (CreateProjectRequest) returns (ProjectResponse);
+  rpc GetProject (common.Id) returns (ProjectResponse);
+  rpc DeleteProject (common.Id) returns (ProjectResponse);
+  rpc FindProjects(FindProjectRequest) returns (ProjectListResponse);
+}
+
+message ProjectListResponse {
+  repeated ProjectResponse projects = 1;
+}
+
+message FindProjectRequest {
+  string user = 1;
+}
+message CreateProjectRequest {
+  string user = 2;
+  string name = 3;
+}
+
+
+message ProjectResponse {
+  string id = 1;
+  string user = 2;
+  string name = 3;
+  string created_at = 4;
+  string updated_at = 5;  
+}
+
+
