@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AccountModule } from './account/account.module';
 import { ConfigModule } from '@nestjs/config';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { GrpcAuthInterceptor } from './lib/grpc.auth.interceptor';
 
 @Module({
   imports: [
@@ -13,6 +15,12 @@ import { ConfigModule } from '@nestjs/config';
     AccountModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR, // Use APP_INTERCEPTOR to apply globally
+      useClass: GrpcAuthInterceptor,
+    },
+  ],
 })
 export class AppModule {}

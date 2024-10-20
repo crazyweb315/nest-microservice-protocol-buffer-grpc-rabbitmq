@@ -6,6 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { filterRequest } from './middleware/filter.request.middleware';
 import * as dotenv from 'dotenv';
 import { GrpcExceptionFilter } from './middleware/grpc.exception.filter.middleware';
+import { GrpcAuthInterceptor } from './lib/grpc.auth.interceptor';
 
 async function bootstrap() {
   dotenv.config();
@@ -53,6 +54,7 @@ async function bootstrap() {
     }),
   );
   app.useGlobalFilters(new GrpcExceptionFilter());
+  app.useGlobalInterceptors(new GrpcAuthInterceptor());
   // app.enableCors({
   //   origin: true,
   // });
