@@ -59,7 +59,7 @@ export interface DeleteUserRequest {
 
 export const ACCOUNT_PACKAGE_NAME = "account";
 
-export interface UserServiceClient {
+export interface AccountServiceClient {
   createUser(request: CreateUserRequest): Observable<UserResponse>;
 
   getUser(request: GetUserRequest): Observable<UserResponse>;
@@ -71,7 +71,7 @@ export interface UserServiceClient {
   login(request: LoginRequest): Observable<LoginResponse>;
 }
 
-export interface UserServiceController {
+export interface AccountServiceController {
   createUser(request: CreateUserRequest): Promise<UserResponse> | Observable<UserResponse> | UserResponse;
 
   getUser(request: GetUserRequest): Promise<UserResponse> | Observable<UserResponse> | UserResponse;
@@ -83,19 +83,19 @@ export interface UserServiceController {
   login(request: LoginRequest): Promise<LoginResponse> | Observable<LoginResponse> | LoginResponse;
 }
 
-export function UserServiceControllerMethods() {
+export function AccountServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = ["createUser", "getUser", "deleteUser", "findUsers", "login"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("UserService", method)(constructor.prototype[method], method, descriptor);
+      GrpcMethod("AccountService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("UserService", method)(constructor.prototype[method], method, descriptor);
+      GrpcStreamMethod("AccountService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const USER_SERVICE_NAME = "UserService";
+export const ACCOUNT_SERVICE_NAME = "AccountService";
