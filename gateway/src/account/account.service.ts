@@ -2,12 +2,13 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import {
   CreateUserRequest,
+  LoginRequest,
+  LoginResponse,
   UserResponse,
   UserServiceClient,
 } from '@proto/user.pb';
-import { Exception } from 'src/lib/exceptions';
+import { Exception, UnAuthorizedException } from 'src/lib/exceptions';
 import { lastValueFrom } from 'rxjs';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class AccountService implements OnModuleInit {
@@ -19,12 +20,22 @@ export class AccountService implements OnModuleInit {
       this.clientGrpc.getService<UserServiceClient>('UserService');
   }
 
-  // getUser(createUsersInput: CreateUsersInput) {
-  //   return this.accountClient.send<UserResponse, CreateUserRequest>(
-  //     'GetUser',
-  //     createUsersInput,
-  //   );
-  // }
+  async getUser({
+    id,
+    token,
+  }: {
+    id: string;
+    token: string;
+  }): Promise<UserResponse> {
+    try {
+      if (!token) {
+        throw new UnAuthorizedException();
+      }
+      return await lastValueFrom(this.accountServiceClient.getUser({ id }));
+    } catch (e) {
+      throw new Exception(e);
+    }
+  }
 
   async createUser(createUsersInput: CreateUserRequest): Promise<UserResponse> {
     try {
@@ -33,6 +44,14 @@ export class AccountService implements OnModuleInit {
       );
     } catch (e) {
       console.log('create user error=', e);
+      throw new Exception(e);
+    }
+  }
+
+  async login(loginInput: LoginRequest): Promise<LoginResponse> {
+    try {
+      return await lastValueFrom(this.accountServiceClient.login(loginInput));
+    } catch (e) {
       throw new Exception(e);
     }
   }
