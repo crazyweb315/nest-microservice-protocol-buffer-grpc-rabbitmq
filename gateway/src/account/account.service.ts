@@ -5,19 +5,21 @@ import {
   LoginRequest,
   LoginResponse,
   UserResponse,
-  UserServiceClient,
+  AccountServiceClient,
 } from '@proto/user.pb';
 import { Exception, UnAuthorizedException } from 'src/lib/exceptions';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable()
 export class AccountService implements OnModuleInit {
-  private accountServiceClient: UserServiceClient;
-  constructor(@Inject('UserService') private readonly clientGrpc: ClientGrpc) {}
+  private accountServiceClient: AccountServiceClient;
+  constructor(
+    @Inject('AccountService') private readonly clientGrpc: ClientGrpc,
+  ) {}
 
   public onModuleInit(): void {
     this.accountServiceClient =
-      this.clientGrpc.getService<UserServiceClient>('UserService');
+      this.clientGrpc.getService<AccountServiceClient>('AccountService');
   }
 
   async getUser({
