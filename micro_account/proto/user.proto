@@ -1,8 +1,8 @@
 syntax = "proto3";
-package grpc;
+package account;
 
 service UserService {
-  rpc CreateUser (CreateUserInput) returns (UserResponse);
+  rpc CreateUser (CreateUserRequest) returns (UserResponse);
   rpc GetUser (GetUserRequest) returns (UserResponse);
   rpc DeleteUser (DeleteUserRequest) returns (UserResponse);
   rpc FindUsers(Empty) returns (UserList);
@@ -22,7 +22,7 @@ message LoginResponse {
   UserResponse user = 3;
 }
 
-message CreateUserInput {
+message CreateUserRequest {
   string name = 1; // Name of the user
   string username = 2; // Username for the user
   string password = 3; // Password for the user

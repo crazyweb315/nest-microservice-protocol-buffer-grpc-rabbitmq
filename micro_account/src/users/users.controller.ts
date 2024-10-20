@@ -3,7 +3,7 @@ import { GrpcMethod } from '@nestjs/microservices';
 import { UsersService } from './users.service';
 import { CreateUsersInput } from '@interfaces/users/dto/create-users.input';
 import { MongoId } from '@interfaces/users/dto/id';
-import { LoginResponse, UserList, UserResponse } from '@proto/user';
+import { LoginResponse, UserList, UserResponse } from '@proto/user.pb';
 import { LoginInput } from '@interfaces/users/dto/login.input';
 import { AuthGuard } from '@decorators/ auth.guard';
 

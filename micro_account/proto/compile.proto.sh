@@ -1,4 +1,5 @@
 npx protoc \
---plugin=./node_modules/.bin/protoc-gen-ts_proto \
---ts_proto_out=./build *.proto \
---ts_proto_opt=outputEncodeMethods=false,outputJsonMethods=false,outputClientImpl=false
+--plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd \
+--ts_proto_out=./build  *.proto \
+--ts_proto_opt=nestJs=true \
+--ts_proto_opt=fileSuffix=.pb
