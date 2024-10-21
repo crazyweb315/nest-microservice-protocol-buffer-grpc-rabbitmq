@@ -1,4 +1,4 @@
-import { CreateUsersInput } from './dto/create-users.input';
+import { CreateUsersInput } from '../lib/dto/create-users.input';
 import { Controller, Post, Get, Body, Query, Headers } from '@nestjs/common';
 import { AccountService } from './account.service';
 import {
@@ -7,8 +7,8 @@ import {
   LoginResponse,
   UserResponse,
 } from '@proto/user.pb';
-import { MongoId } from './dto/id';
-import { LoginInput } from './dto/login.input';
+import { MongoId } from '../lib/dto/id';
+import { LoginInput } from '../lib/dto/login.input';
 
 @Controller('account')
 export class AccountController {
