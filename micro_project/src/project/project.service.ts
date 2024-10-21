@@ -13,9 +13,9 @@ export class ProjectService {
       data,
     });
 
-//console.log(`project.createdAt ${UtilsService.dateToTimestamp(project.createdAt).seconds}=`, UtilsService.timestampToDate(UtilsService.dateToTimestamp(project.createdAt)))    
     return {
       ...project,
+      user: null,
       createdAt: UtilsService.dateToTimestamp(project.createdAt),
       updatedAt: UtilsService.dateToTimestamp(project.updatedAt),
     };

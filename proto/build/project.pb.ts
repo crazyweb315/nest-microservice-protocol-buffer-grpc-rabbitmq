@@ -9,6 +9,7 @@ import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 import { Id } from "./common.pb";
 import { Timestamp } from "./google/protobuf/timestamp.pb";
+import { UserResponse } from "./user.pb";
 
 export const protobufPackage = "project";
 
@@ -25,6 +26,7 @@ export interface ProjectResponse {
   id: string;
   userId: string;
   title: string;
+  user: UserResponse | undefined;
   createdAt: Timestamp | undefined;
   updatedAt: Timestamp | undefined;
 }

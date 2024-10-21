@@ -4,6 +4,7 @@ package project;
 
 import "google/protobuf/timestamp.proto";
 import "common.proto";
+import "user.proto";
 
 service ProjectService {
   rpc CreateProject (CreateProjectRequest) returns (ProjectResponse);
@@ -26,8 +27,9 @@ message ProjectResponse {
   string id = 1;
   string userId = 2;
   string title = 3;
-  google.protobuf.Timestamp created_at = 4;
-  google.protobuf.Timestamp updated_at = 5;  
+  account.UserResponse user = 4;
+  google.protobuf.Timestamp created_at = 20;
+  google.protobuf.Timestamp updated_at = 21;  
 }
 
 
