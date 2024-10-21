@@ -51,4 +51,12 @@ export class UtilsService {
     };
     return timestamp;
   }
+
+  public static timestampToDate(timestamp: Timestamp): Date {
+    // Calculate total milliseconds from seconds and nanoseconds
+    const milliseconds = timestamp.seconds * 1000 + timestamp.nanos / 1000000;
+
+    // Create a new Date object using the milliseconds
+    return new Date(milliseconds);
+  }
 }

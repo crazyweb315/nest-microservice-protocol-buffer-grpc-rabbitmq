@@ -26,8 +26,8 @@ message ProjectResponse {
   string id = 1;
   string userId = 2;
   string title = 3;
-  google.protobuf.Timestamp createdAt = 4;
-  google.protobuf.Timestamp updatedAt = 5;  
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;  
 }
 
 
