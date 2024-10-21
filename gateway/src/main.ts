@@ -7,10 +7,20 @@ import { filterRequest } from './middleware/filter.request.middleware';
 import * as dotenv from 'dotenv';
 import { GrpcExceptionFilter } from './middleware/grpc.exception.filter.middleware';
 import { GrpcAuthInterceptor } from './lib/grpc.auth.interceptor';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 
 async function bootstrap() {
   dotenv.config();
-  const app = await NestFactory.create(AppModule);
+
+  const fastifyAdapter = new FastifyAdapter();
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    fastifyAdapter,
+  );
+
   app.use(filterRequest);
 
   const configService = app.get(ConfigService);
@@ -32,7 +42,7 @@ async function bootstrap() {
       .build();
     const swaggerDocument = SwaggerModule.createDocument(app, swaggerOptions);
 
-    SwaggerModule.setup(globalPrefix, app, swaggerDocument, {
+    SwaggerModule.setup(globalPrefix + '/doc', app, swaggerDocument, {
       swaggerUrl: `${configService.get('BACKEND_HOST')}/api/docs-json/`,
       explorer: true,
       swaggerOptions: {
