@@ -18,7 +18,19 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
+      "@filters/*": ["./src/lib/filters/*"],
+      "@guards/*": ["./src/lib/guards/*"],
+      "@pipes/*": ["./src/lib/pipes/*"],
+      "@interceptors/*": ["./src/lib/interceptors/*"],
+      "@interfaces/*": ["./src/lib/interfaces/*"],
+      "@decorators/*": ["./src/lib/decorators/*"],
+      "@modules/*": ["./src/lib/modules/*"],
+      "@providers/*": ["./src/lib/providers/*"],
+      "@config/*": ["./src/lib/config/*"],
+      "@helpers/*": ["./src/lib/helpers/*"],
+      "@constants/*": ["./src/lib/constants/*"],
+      "@lib/*": ["./src/lib/*"],
       "@proto/*": ["./proto/build/*"] 
-    }    
+    }        
   }
 }
