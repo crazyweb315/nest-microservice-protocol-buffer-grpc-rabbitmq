@@ -10,12 +10,10 @@ export class ProjectService {
 
   async createProject(data: CreateProjectRequest): Promise<ProjectResponse> {
     const project: Project = await this.prisma.project.create({
-      data: {
-        title: data.title,
-        userId: data.userId,
-      },
+      data,
     });
 
+//console.log(`project.createdAt ${UtilsService.dateToTimestamp(project.createdAt).seconds}=`, UtilsService.timestampToDate(UtilsService.dateToTimestamp(project.createdAt)))    
     return {
       ...project,
       createdAt: UtilsService.dateToTimestamp(project.createdAt),
