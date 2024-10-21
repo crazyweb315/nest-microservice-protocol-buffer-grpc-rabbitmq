@@ -59,3 +59,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 /micro_account/node_modules
 /micro_account/proto
 /micro_account/prisma
+/micro_account/dist
+
+/micro_project/dist
+/micro_project/node_modules
+/micro_project/prisma
+/micro_project/proto
