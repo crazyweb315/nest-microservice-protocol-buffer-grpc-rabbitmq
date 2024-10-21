@@ -11,8 +11,10 @@
     "account:dev": "npm run build:proto && cd micro_account && rm -rf proto && cp -r -f ../proto/ proto/ && rm -rf proto/node_modules && rm -rf prisma && cp -r -f ../prisma/ prisma/ && npx prisma generate && npm run start:dev",
     "project:dev": "npm run build:proto && cd micro_project && rm -rf proto && cp -r -f ../proto/ proto/ && rm -rf proto/node_modules && rm -rf prisma && cp -r -f ../prisma/ prisma/ && npx prisma generate && npm run start:dev"
   },
-  "dependencies": {
-  },
   "devDependencies": {
+    "prisma": "^5.21.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.21.1"
   }
 }
