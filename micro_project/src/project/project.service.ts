@@ -13,9 +13,30 @@ export class ProjectService {
       data,
     });
 
-//console.log(`project.createdAt ${UtilsService.dateToTimestamp(project.createdAt).seconds}=`, UtilsService.timestampToDate(UtilsService.dateToTimestamp(project.createdAt)))    
     return {
       ...project,
+      user: null,
+      createdAt: UtilsService.dateToTimestamp(project.createdAt),
+      updatedAt: UtilsService.dateToTimestamp(project.updatedAt),
+    };
+  }
+
+  async getProject(id: string): Promise<ProjectResponse> {
+    const project = await this.prisma.project.findUnique({
+      select: {
+        id: true,
+        title: true,
+        userId: true,
+        createdAt: true,
+        updatedAt: true,
+        user: true,
+      },
+      where: { id },
+    });
+
+    return {
+      ...project,
+      user: project.user,
       createdAt: UtilsService.dateToTimestamp(project.createdAt),
       updatedAt: UtilsService.dateToTimestamp(project.updatedAt),
     };

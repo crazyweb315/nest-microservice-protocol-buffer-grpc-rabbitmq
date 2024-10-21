@@ -5,6 +5,7 @@ import { AccountModule } from './account/account.module';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { GrpcAuthInterceptor } from './lib/grpc.auth.interceptor';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { GrpcAuthInterceptor } from './lib/grpc.auth.interceptor';
       envFilePath: ['.env', '.env.dev', '.env.stage', '.env.prod'],
     }),
     AccountModule,
+    ProjectModule,
   ],
   controllers: [AppController],
   providers: [

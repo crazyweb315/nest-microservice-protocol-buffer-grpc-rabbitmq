@@ -22,5 +22,7 @@ model Project {
   title    String
   userId   String   // Change this to String
   user     User     @relation("UserProjects", fields: [userId], references: [id]) // Foreign key
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
   @@index([userId]) // Create an index on the userId field
 }
