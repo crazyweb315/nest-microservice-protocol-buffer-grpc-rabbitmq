@@ -1,0 +1,51 @@
+syntax = "proto3";
+package account;
+
+service AccountService {
+  rpc CreateUser (CreateUserRequest) returns (UserResponse);
+  rpc GetUser (GetUserRequest) returns (UserResponse);
+  rpc DeleteUser (DeleteUserRequest) returns (UserResponse);
+  rpc FindUsers(Empty) returns (UserList);
+  rpc Login(LoginRequest) returns (LoginResponse);
+}
+
+message Empty {}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+  UserResponse user = 3;
+}
+
+message CreateUserRequest {
+  string name = 1; // Name of the user
+  string username = 2; // Username for the user
+  string password = 3; // Password for the user
+  string email = 4; // Email address of the user
+  string bio = 5; // Optional bio for the user
+}
+
+message UserResponse {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string bio = 4;
+  string name = 5;
+}
+
+message UserList {
+  repeated UserResponse users = 1;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
