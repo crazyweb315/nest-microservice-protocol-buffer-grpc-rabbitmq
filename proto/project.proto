@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package project;
+
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+
+service ProjectService {
+  rpc CreateProject (CreateProjectRequest) returns (ProjectResponse);
+  rpc GetProject (common.Id) returns (ProjectResponse);
+  rpc DeleteProject (common.Id) returns (ProjectResponse);
+  rpc FindProjects(common.Id) returns (ProjectListResponse);
+}
+
+message ProjectListResponse {
+  repeated ProjectResponse projects = 1;
+}
+
+message CreateProjectRequest {
+  string userId = 2;
+  string title = 3;
+}
+
+
+message ProjectResponse {
+  string id = 1;
+  string userId = 2;
+  string title = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;  
+}
+
+
