@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ProjectService } from './project.service';
 import { ProjectController } from './project.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { RabbitMQConfig } from '@providers/amqp/rabbit.config';
 
 @Module({
   imports: [
