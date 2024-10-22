@@ -8,6 +8,8 @@ import { LoggerModule } from '@lib/logger/logger.module';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule, loggingMiddleware, QueryInfo } from '@providers/prisma';
 import { UtilsModule } from '@lib/utils/utils.module';
+import { ProducerService } from '@providers/amqp/producer.service';
+import { RabbitMQConfig } from '@providers/amqp/rabbit.config';
 
 @Module({
   imports: [
@@ -33,6 +35,6 @@ import { UtilsModule } from '@lib/utils/utils.module';
     UtilsModule,
   ],
   controllers: [AppController, ProjectController],
-  providers: [AppService, ProjectService],
+  providers: [AppService, ProjectService, ProducerService, RabbitMQConfig],
 })
 export class AppModule {}
