@@ -7,19 +7,12 @@ import { filterRequest } from './middleware/filter.request.middleware';
 import * as dotenv from 'dotenv';
 import { GrpcExceptionFilter } from './middleware/grpc.exception.filter.middleware';
 import { GrpcAuthInterceptor } from './lib/grpc.auth.interceptor';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
+import FastifySocketIO from 'fastify-socket.io';
 
 async function bootstrap() {
   dotenv.config();
 
-  const fastifyAdapter = new FastifyAdapter();
-  const app = await NestFactory.create<NestFastifyApplication>(
-    AppModule,
-    fastifyAdapter,
-  );
+  const app = await NestFactory.create(AppModule);
 
   app.use(filterRequest);
 
@@ -68,6 +61,7 @@ async function bootstrap() {
   // app.enableCors({
   //   origin: true,
   // });
+  // Initialize Socket.IO with Fastify
   const port = configService.get('BACKEND_PORT');
   await app.listen(port);
 }
