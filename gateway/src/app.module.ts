@@ -6,11 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { GrpcAuthInterceptor } from './lib/grpc.auth.interceptor';
 import { ProjectModule } from './project/project.module';
-import { ProducerService } from '@providers/amqp/producer.service';
-import { ConsumerService } from '@providers/amqp/consumer.service';
-import { StateService } from '@providers/amqp/state.service';
-import { RabbitMQConfig } from '@providers/amqp/rabbit.config';
-import { CacheModule } from '@nestjs/cache-manager';
+import { WebsocketsGatewayModule } from '@providers/websocket/websockets.module';
+import { RabbitMQModule } from '@providers/amqp/amqp.module';
 
 @Module({
   imports: [
@@ -18,9 +15,10 @@ import { CacheModule } from '@nestjs/cache-manager';
       isGlobal: true,
       envFilePath: ['.env', '.env.dev', '.env.stage', '.env.prod'],
     }),
+    RabbitMQModule,
     AccountModule,
     ProjectModule,
-    CacheModule.register({ ttl: 0 }),
+    WebsocketsGatewayModule,
   ],
   controllers: [AppController],
   providers: [
@@ -29,10 +27,6 @@ import { CacheModule } from '@nestjs/cache-manager';
       provide: APP_INTERCEPTOR, // Use APP_INTERCEPTOR to apply globally
       useClass: GrpcAuthInterceptor,
     },
-    ProducerService,
-    ConsumerService,
-    RabbitMQConfig,
-    StateService,
   ],
 })
 export class AppModule {}
