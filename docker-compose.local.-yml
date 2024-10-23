@@ -1,8 +1,5 @@
+version: '3.7'
 services:
-  #generic:
-    #build:
-      #context: proto
-      #dockerfile: .Dockerfile
   mongo:
    image : davybello/mongo-replica-set:4.4.8
    container_name: mongodb
@@ -40,17 +37,7 @@ services:
     ports:
       - "5672:5672"  # AMQP
       - "15672:15672"  # RabbitMQ Management UI
-
-  micro_account:
-    build:
-      context: .
-      dockerfile: ./micro_account/.Dockerfile
-    ports:
-      - "5000:5000"  # AMQP
-    #volumes:
-      #- ./micro_account:/app
-      #- ./proto:/proto
-      #- ./prisma:/prisma
+      
 volumes:
   redis_data:
     driver: local
