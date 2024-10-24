@@ -1,4 +1,4 @@
-docker = docker-compose build --no-cache
+docker = docker-compose build  --no-cache
 projects = micro_account
 
 init:

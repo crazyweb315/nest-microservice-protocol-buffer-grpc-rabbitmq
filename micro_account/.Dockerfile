@@ -3,7 +3,8 @@ FROM node:22-alpine AS proto-builder
 
 USER root
 
-RUN echo "Installing bash..." && apk add --no-cache bash git
+RUN echo "Installing bash..." && apk add --no-cache bash
+
 RUN echo "Installing protoc globally..."
 
 # Set the working directory
@@ -20,6 +21,12 @@ RUN echo "Running compile.proto.sh..." && cd proto && sh compile.proto.sh
 # Stage 2: Build the micro_account service
 FROM node:22-alpine
 
+RUN echo "Installing grpcurl..." && apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing grpcurl
+RUN echo "Installing mongo..." 
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.9/main' >> /etc/apk/repositories
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.9/community' >> /etc/apk/repositories
+RUN apk update && apk add --no-cache mongodb mongodb-tools
+
 # Set the working directory for the final image
 WORKDIR /app
 
@@ -32,20 +39,20 @@ COPY ./micro_account /app
 #Copy the prisma directory
 COPY ./prisma /app/prisma  
 
-# Set the working directory to micro_account
-WORKDIR /app
-
 # Clean up old files and prepare the environment
 RUN rm -rf /app/proto/node_modules # Remove node modules in proto
 
-RUN echo "Installing global packages..." && npm i -g @nestjs/cli prisma 
+RUN echo "Installing global nestjs/cli packages..." && npm i -g @nestjs/cli
+RUN echo "Installing global prisma packages..." && npm i -g prisma 
 RUN npm install
 RUN echo "Generating prisma schema..." && prisma generate  # Generate Prisma client
 # Install dependencies for micro_account
-
+RUN echo "schema generation completed"
 
 # Expose the required port
 EXPOSE 5000  
 
 # Start the microservice
+RUN echo "Starting micro service"
+
 CMD ["npm", "run", "start:dev"]
