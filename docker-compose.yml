@@ -65,10 +65,10 @@ services:
       #- ./micro_account:/app
       #- ./proto:/app/proto
       #- ./prisma:/app/prisma
-    env_file:
-      - ./micro_account/.env      
-    environment: 
-     DATABASE_URL: ${DATABASE_URL}
+    #env_file:
+      #- ./micro_account/.env      
+    #environment: 
+     #DATABASE_URL: ${DATABASE_URL}
     depends_on: 
       - mongo
       - redis
