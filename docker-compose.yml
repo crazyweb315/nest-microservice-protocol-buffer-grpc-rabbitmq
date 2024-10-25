@@ -65,6 +65,7 @@ services:
       #- ./micro_account:/app
       #- ./proto:/app/proto
       #- ./prisma:/app/prisma
+      #- app/node_modules
     #env_file:
       #- ./micro_account/.env      
     #environment: 
