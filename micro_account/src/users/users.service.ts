@@ -19,7 +19,7 @@ import { LoginInput } from '@interfaces/users/dto/login.input';
 import { BcryptService } from '@lib/hashing/bcrypt.service';
 import { TokenInput } from '@interfaces/users/dto/token.input';
 import { CreateUsersInput } from '@interfaces/users/dto/create-users.input';
-import { UserList, UserResponse } from 'proto/build/user.pb';
+import { UserList, UserResponse } from '@proto/user.pb';
 
 @Injectable()
 export class UsersService {

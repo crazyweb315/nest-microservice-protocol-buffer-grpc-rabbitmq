@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  mongo:
+   image : davybello/mongo-replica-set:4.4.8
+   container_name: mongodb
+   volumes:
+     - "./docker/.data/mongo1:/var/lib/mongo1"
+     - "./docker/.data/mongo2:/var/lib/mongo2"
+     - "./docker/.data/mongo3:/var/lib/mongo3"
+   environment:
+     - MONGODB_USERNAME=grpc
+     - MONGODB_PASSWORD=grpc
+     - MONGODB_DATABASE=grpc-dev
+     - MONGODB_ROOT_PASSWORD=TX5tDDdD2h7CnYyg
+   ports:
+     - 27017:27017
+     - 27018:27018
+     - 27019:27019
+  redis:
+    image: bitnami/redis:latest
+    tty: true
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_USERNAME=user
+      - REDIS_PASSWORD=password
+      - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+    volumes:
+      - 'redis_data:/bitnami/redis/data'
+
+  rabbitmq:
+    image: "rabbitmq:management-alpine"
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"  # AMQP
+      - "15672:15672"  # RabbitMQ Management UI
+      
+volumes:
+  redis_data:
+    driver: local
+  mongodb_data:  
